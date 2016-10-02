@@ -16,6 +16,11 @@ public class Metrics {
 	@XmlElement(name = "value", required = true)
 	private int value;
 	
+	public Metrics(long timeStamp, int weight){
+		this.timeStamp = timeStamp;
+		this.value = weight;
+	}
+	
 	public int getValue() {
 		return value;
 	}
