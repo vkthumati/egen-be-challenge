@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:annotation-config />
+	
+	<aop:config>
+		<aop:pointcut id="deviceMoveServiceMethod" expression="execution(public * com.comcast.customer.devicemovelibrary.service.DeviceMoveLibraryImpl.move(..))" />
+		<aop:aspect id="deviceMoveValidation" ref="deviceMoveValidationAspect" order="5">
+			<aop:around method="around" pointcut-ref="deviceMoveServiceMethod" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean name="deviceMoveValidationAspect" class="com.comcast.core.framework.validation.ValidationAspect">
+		<property name="validators">
+			<list/>
+		</property>
+		<property name="serviceValidators">
+			<list>
+				<bean class="com.comcast.customer.devicemovelibrary.validation.DeviceMoveLibraryServiceValidator"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>
