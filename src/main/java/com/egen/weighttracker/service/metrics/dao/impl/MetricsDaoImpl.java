@@ -1,7 +1,6 @@
 package com.egen.weighttracker.service.metrics.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -24,14 +23,14 @@ public class MetricsDaoImpl implements MetricsDao{
 	@Override
 	public List<Metrics> read() {
 		List<Metrics> metricsList = new ArrayList<Metrics>();
-		metricsList.add(new Metrics(new Date().getTime(), 161));
-		metricsList.add(new Metrics(new Date().getTime(), 162));
-		metricsList.add(new Metrics(new Date().getTime(), 163));
-		metricsList.add(new Metrics(new Date().getTime(), 164));
-		metricsList.add(new Metrics(new Date().getTime(), 165));
-		metricsList.add(new Metrics(new Date().getTime(), 166));
-		metricsList.add(new Metrics(new Date().getTime(), 167));
-		metricsList.add(new Metrics(new Date().getTime(), 168));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 161));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 162));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 163));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 164));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 165));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 166));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 167));
+		metricsList.add(new Metrics(System.currentTimeMillis(), 168));
 		
 		return metricsList;
 	}
